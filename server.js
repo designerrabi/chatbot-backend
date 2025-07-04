@@ -24,7 +24,7 @@ app.post('/api/chat', async (req, res) => {
         // জেমিনি মডেল ইনিশিয়ালাইজ করা
         const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
         
-        // ইউজারের মেসেজ থেকে উত্তর তৈরি করা
+        // সরাসরি ইউজারের প্রশ্ন জেমিনিকে পাঠানো হচ্ছে, কোনো অতিরিক্ত প্রসঙ্গ ছাড়াই
         const result = await model.generateContent(userMessage);
         const response = await result.response;
         const botReply = response.text();
@@ -33,13 +33,13 @@ app.post('/api/chat', async (req, res) => {
         res.json({ reply: botReply });
 
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error in Gemini API call:', error);
         res.status(500).json({ error: 'Failed to get response from AI' });
     }
 });
 
 // সার্ভার চালু করা হচ্ছে
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
