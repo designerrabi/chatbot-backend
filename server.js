@@ -13,7 +13,7 @@ app.use(cors()); // যেকোনো ডোমেইন থেকে রিক
 app.use(express.json()); // JSON বডি পার্স করার জন্য
 
 // চ্যাট করার জন্য একটি রুট তৈরি করা হচ্ছে
-app.post('/chat', async (req, res) => {
+app.post('/api/chat', async (req, res) => {
     try {
         // ইউজারের পাঠানো মেসেজ গ্রহণ
         const userMessage = req.body.message;
